@@ -2,6 +2,8 @@ import { WalletButton } from '../solana/solana-provider'
 import { TimelockProgram, TimelockProgramExplorerLink } from './timelock-ui'
 import { AppHero } from '../app-hero'
 import { useWalletUi } from '@wallet-ui/react'
+import Link from 'next/link'
+import { Button } from '../ui/button'
 
 export default function TimelockFeature() {
   const { account } = useWalletUi()
@@ -9,8 +11,11 @@ export default function TimelockFeature() {
   if (!account) {
     return (
       <div className="max-w-4xl mx-auto">
-        <div className="hero py-[64px]">
-          <div className="hero-content text-center">
+        <AppHero title="Connect your wallet" />
+        <div className="max-w-xl mx-auto py-6 sm:px-6 lg:px-8">
+
+          {/* Centered button */}
+          <div className="flex justify-center -mt-10">
             <WalletButton />
           </div>
         </div>
