@@ -1,0 +1,234 @@
+{
+  "address": "81eTCSx3zoUi8Q2ewTPJgfiJk32AR1mXnSTj6BJ5aKa",
+  "metadata": {
+    "name": "timelock",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "lock_sol",
+      "discriminator": [
+        181,
+        15,
+        15,
+        99,
+        159,
+        87,
+        241,
+        42
+      ],
+      "accounts": [
+        {
+          "name": "user",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "vault_pda",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  100,
+                  97
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "seed"
+              },
+              {
+                "kind": "account",
+                "path": "user"
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "vault_pda"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "seed",
+          "type": "u64"
+        },
+        {
+          "name": "locked_amount",
+          "type": "u64"
+        },
+        {
+          "name": "unlock_at",
+          "type": "i64"
+        }
+      ]
+    },
+    {
+      "name": "withdraw_sol",
+      "discriminator": [
+        145,
+        131,
+        74,
+        136,
+        65,
+        137,
+        42,
+        38
+      ],
+      "accounts": [
+        {
+          "name": "user",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "vault_pda",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  100,
+                  97
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "vault_pda.seed",
+                "account": "VaultPDA"
+              },
+              {
+                "kind": "account",
+                "path": "user"
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "vault_pda"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "VaultPDA",
+      "discriminator": [
+        109,
+        182,
+        77,
+        81,
+        208,
+        30,
+        110,
+        107
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "UnlockTimestampInPast",
+      "msg": "Unlock timestamp cannot be in the past"
+    },
+    {
+      "code": 6001,
+      "name": "UnlockTimeNotReached",
+      "msg": "Unlock time not reached yet"
+    },
+    {
+      "code": 6002,
+      "name": "SolAmountNotMatching",
+      "msg": "Disparity in locked amount and amount held in vault"
+    },
+    {
+      "code": 6003,
+      "name": "LockingZeroSolError",
+      "msg": "Cannot lock zero SOL"
+    }
+  ],
+  "types": [
+    {
+      "name": "VaultPDA",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "seed",
+            "type": "u64"
+          },
+          {
+            "name": "locked_amount",
+            "type": "u64"
+          },
+          {
+            "name": "unlock_at",
+            "type": "i64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "vault_bump",
+            "type": "u8"
+          }
+        ]
+      }
+    }
+  ]
+}
