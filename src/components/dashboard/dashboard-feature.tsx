@@ -13,7 +13,7 @@ const links: { label: string; href: string }[] = [
 export function DashboardFeature() {
   return (
     <div>
-      <AppHero title="gm" subtitle="Welcome to Timelock." />
+      <AppHero title="Timelock" subtitle="This program allows you to lock your SOL for a specified amount of time. Why would you use this? To prevent overspending and manage your budget." />
       <div className="max-w-xl mx-auto py-6 sm:px-6 lg:px-8 text-center">
 
         {/* Centered button */}
