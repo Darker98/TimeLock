@@ -15,7 +15,6 @@ export function DashboardFeature() {
     <div>
       <AppHero title="gm" subtitle="Welcome to Timelock." />
       <div className="max-w-xl mx-auto py-6 sm:px-6 lg:px-8 text-center">
-        {/* Your previous content */}
 
         {/* Centered button */}
         <div className="-mt-10">
